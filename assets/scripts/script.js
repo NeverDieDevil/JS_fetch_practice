@@ -26,6 +26,12 @@ function printBeer(name, desc, img){
   })
 } 
 
+function errorHandling(){
+  const haslo = document.createElement('h1');
+  haslo.textContent = 'Nie znaleziono surowców, trzeba zebrać więcej drewna';
+  beers.append(haslo);
+}
+
 function printBeers(data){
     for(let i=0; i<=10; i++){
         printBeer(data[i].name, data[i].description, data[i].image_url);
@@ -34,7 +40,7 @@ function printBeers(data){
 
 fetch('https://api.punkapi.com/v2/beers').then((response) => {
     if(!response.ok){
-        throw new Error('Something went horribly wrong'); 
+        throw new Error(errorHandling()); 
 }  console.log(response);
 return response.json();
  }
